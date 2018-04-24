@@ -2,6 +2,7 @@ package io.crdant.hello
 
 import Electron.BrowserWindow
 import Electron.BrowserWindowConstructorOptions
+import Electron.AboutPanelOptionsOptions
 import Electron.App
 
 external fun require(module:String):dynamic
@@ -12,7 +13,12 @@ class HelloElectron () {
   var closed = true
 
   fun createWindow() {
-    val window = BrowserWindow(js("{width: 800, height: 600}"))
+    val window = BrowserWindow(
+        object : BrowserWindowConstructorOptions {
+          override var width : Number? = 800
+          override var height : Number? = 600
+      })
+    window.setTitle("Hello World")
     window.loadURL("file://" + app.getAppPath() + "/index.html")
 
     closed = false
@@ -26,9 +32,13 @@ class HelloElectron () {
   }
 
   fun run() {
-    println ()
     with(app) {
       setName("Hello Electron")
+      setAboutPanelOptions( object : AboutPanelOptionsOptions {
+        override var applicationName : String? = "Hello Electron"
+        override var copyright : String? = "© 2018 Pivotal Software, released under the Apache License version 2.0"
+        override var credits : String? = "Icon 'Hello' by Jonathan Collie from https://thenounproject.com"
+      })
 
       on("ready", ::createWindow)
 
