@@ -1,0 +1,15 @@
+{
+  "name": "hello-electron",
+  "version": "1.0.0",
+  "description": "A simple hello world in Electron",
+  "main": "build/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^1.8.4"
+  },
+  "dependencies": {
+    "kotlin": "^1.2.40"
+  }
+}
