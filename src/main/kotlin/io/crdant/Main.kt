@@ -11,9 +11,11 @@ class HelloElectron () {
   val app : App = require("electron").app
   var closed = true
 
+
   fun createWindow() {
     val window = BrowserWindow(js("{width: 800, height: 600}"))
-    window.loadURL("file:" + app.getAppPath() + "/index.html")
+    window.setTitle("Hello World")
+
     closed = false
 
     with(window) {
@@ -26,6 +28,8 @@ class HelloElectron () {
 
   fun run() {
     with(app) {
+      setName("Hello Electron")
+
       on("ready", ::createWindow)
 
       on("window-all-closed") {
