@@ -11,10 +11,9 @@ class HelloElectron () {
   val app : App = require("electron").app
   var closed = true
 
-
   fun createWindow() {
     val window = BrowserWindow(js("{width: 800, height: 600}"))
-    window.setTitle("Hello World")
+    window.loadURL("file://" + app.getAppPath() + "/index.html")
 
     closed = false
 
@@ -27,6 +26,7 @@ class HelloElectron () {
   }
 
   fun run() {
+    println ()
     with(app) {
       setName("Hello Electron")
 
@@ -43,6 +43,7 @@ class HelloElectron () {
       }
     }
   }
+
 }
 
 fun main(args: Array<String>) {
